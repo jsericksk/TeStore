@@ -1,29 +1,32 @@
 package com.kproject.testore.data.database
 
-import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.filters.SmallTest
 import com.google.common.truth.Truth.assertThat
 import com.kproject.testore.data.CartProduct
 import com.kproject.testore.getOrAwaitValue
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
+import javax.inject.Inject
+import javax.inject.Named
 
-@RunWith(AndroidJUnit4::class)
+@HiltAndroidTest
 class CartDatabaseTest {
+
+    @get:Rule
+    var hiltRule = HiltAndroidRule(this)
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
+    @Inject
+    @Named("test_database")
+    lateinit var db: CartDatabase
     private lateinit var cartDAO: CartDAO
-    private lateinit var db: CartDatabase
 
     private val cartProduct = CartProduct(
         id = 0,
@@ -37,8 +40,7 @@ class CartDatabaseTest {
 
     @Before
     fun setUp() {
-        val context = ApplicationProvider.getApplicationContext<Context>()
-        db = Room.inMemoryDatabaseBuilder(context, CartDatabase::class.java).build()
+        hiltRule.inject()
         cartDAO = db.cartDAO()
     }
 
@@ -48,14 +50,14 @@ class CartDatabaseTest {
     }
 
     @Test
-    fun addAnProduct_returnsTrue() = runBlocking {
+    fun addAnProduct_returnsSuccess() = runBlocking {
         cartDAO.addProduct(cartProduct)
         val products = cartDAO.getAllProducts().getOrAwaitValue()
         assertThat(products.contains(cartProduct)).isTrue()
     }
 
     @Test
-    fun deleteProduct_returnsTrue() = runBlocking {
+    fun deleteProduct_returnsSuccess() = runBlocking {
         cartDAO.addProduct(cartProduct)
         cartDAO.deleteProduct(cartProduct)
         val products = cartDAO.getAllProducts().getOrAwaitValue()
@@ -63,7 +65,7 @@ class CartDatabaseTest {
     }
 
     @Test
-    fun deleteAllProducts_returnTrue() = runBlocking {
+    fun deleteAllProducts_returnsSuccess() = runBlocking {
         for (i in 1..10) {
             val product = CartProduct(
                 id = i,
@@ -84,5 +86,11 @@ class CartDatabaseTest {
         assertThat(newList.isEmpty()).isTrue()
     }
 
-
+    @Test
+    fun addTwoProductsWithTheSameId_returnsListWithOnlyOne() = runBlocking {
+        cartDAO.addProduct(cartProduct)
+        cartDAO.addProduct(cartProduct)
+        val products = cartDAO.getAllProducts().getOrAwaitValue()
+        assertThat(products.size).isEqualTo(1)
+    }
 }

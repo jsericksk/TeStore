@@ -27,8 +27,8 @@ object DataModule {
 
     @Singleton
     @Provides
-    fun cartDatabaseRepository(@ApplicationContext context: Context): CartDatabaseRepository {
-        return CartDatabaseRepositoryImpl(provideCartDatabase(context).cartDAO())
+    fun cartDatabaseRepository(cartDatabase: CartDatabase): CartDatabaseRepository {
+        return CartDatabaseRepositoryImpl(cartDatabase.cartDAO())
     }
 
     @Singleton
