@@ -2,7 +2,6 @@ package com.kproject.testore.di
 
 import android.content.Context
 import androidx.room.Room
-import com.kproject.testore.data.database.CartDAO
 import com.kproject.testore.data.database.CartDatabase
 import com.kproject.testore.data.repositories.CartDatabaseRepository
 import com.kproject.testore.data.repositories.CartDatabaseRepositoryImpl

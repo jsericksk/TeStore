@@ -50,7 +50,7 @@ class CartDatabaseTest {
     }
 
     @Test
-    fun addAnProduct_returnsSuccess() = runBlocking {
+    fun addProduct_returnsSuccess() = runBlocking {
         cartDAO.addProduct(cartProduct)
         val products = cartDAO.getAllProducts().getOrAwaitValue()
         assertThat(products.contains(cartProduct)).isTrue()
