@@ -3,10 +3,10 @@ package com.kproject.testore.di
 import android.content.Context
 import androidx.room.Room
 import com.kproject.testore.data.database.CartDatabase
-import com.kproject.testore.data.repositories.CartDatabaseRepository
-import com.kproject.testore.data.repositories.CartDatabaseRepositoryImpl
-import com.kproject.testore.data.repositories.ProductRepository
-import com.kproject.testore.data.repositories.ProductRepositoryImpl
+import com.kproject.testore.data.repository.CartDatabaseRepository
+import com.kproject.testore.data.repository.CartDatabaseRepositoryImpl
+import com.kproject.testore.data.repository.ProductRepository
+import com.kproject.testore.data.repository.ProductRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

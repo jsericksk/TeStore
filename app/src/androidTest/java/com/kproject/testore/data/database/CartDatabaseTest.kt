@@ -25,7 +25,7 @@ class CartDatabaseTest {
 
     @Inject
     @Named("test_database")
-    lateinit var db: CartDatabase
+    lateinit var cartDatabase: CartDatabase
     private lateinit var cartDAO: CartDAO
 
     private val cartProduct = CartProduct(
@@ -41,12 +41,12 @@ class CartDatabaseTest {
     @Before
     fun setUp() {
         hiltRule.inject()
-        cartDAO = db.cartDAO()
+        cartDAO = cartDatabase.cartDAO()
     }
 
     @After
     fun tearDown() {
-        db.close()
+        cartDatabase.close()
     }
 
     @Test

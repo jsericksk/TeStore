@@ -4,8 +4,8 @@ import androidx.lifecycle.*
 import com.kproject.testore.data.CartProduct
 import com.kproject.testore.data.Product
 import com.kproject.testore.data.Resource
-import com.kproject.testore.data.repositories.CartDatabaseRepository
-import com.kproject.testore.data.repositories.ProductRepository
+import com.kproject.testore.data.repository.CartDatabaseRepository
+import com.kproject.testore.data.repository.ProductRepository
 import com.kproject.testore.utils.ProductCategory
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -37,21 +37,15 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    fun addProduct(product: CartProduct) {
-        viewModelScope.launch {
-            cartDatabaseRepository.addProduct(product)
-        }
+    fun addProduct(product: CartProduct) = viewModelScope.launch {
+        cartDatabaseRepository.addProduct(product)
     }
 
-    fun deleteProduct(product: CartProduct) {
-        viewModelScope.launch {
-            cartDatabaseRepository.deleteProduct(product)
-        }
+    fun deleteProduct(product: CartProduct) = viewModelScope.launch {
+        cartDatabaseRepository.deleteProduct(product)
     }
 
-    fun deleteAllProducts() {
-        viewModelScope.launch {
-            cartDatabaseRepository.deleteAllProducts()
-        }
+    fun deleteAllProducts() = viewModelScope.launch {
+        cartDatabaseRepository.deleteAllProducts()
     }
 }

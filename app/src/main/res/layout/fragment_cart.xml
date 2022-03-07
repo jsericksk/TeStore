@@ -28,8 +28,8 @@
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tbToolbar"
         app:layout_constraintBottom_toTopOf="@id/btCheckout"
+        app:layout_constraintTop_toBottomOf="@id/tbToolbar"
         tools:listitem="@layout/recyclerview_item_cart"
         tools:visibility="visible" />
 

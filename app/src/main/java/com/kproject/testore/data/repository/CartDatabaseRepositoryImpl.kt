@@ -1,4 +1,4 @@
-package com.kproject.testore.data.repositories
+package com.kproject.testore.data.repository
 
 import androidx.lifecycle.LiveData
 import com.kproject.testore.data.CartProduct

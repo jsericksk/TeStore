@@ -12,68 +12,81 @@
         app:cardBackgroundColor="#202020"
         app:cardCornerRadius="16dp">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:padding="12dp">
+            android:layout_margin="12dp">
 
             <ImageView
                 android:id="@+id/ivImage"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginEnd="12dp"
-                android:layout_centerVertical="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_launcher_foreground" />
 
-            <TextView
-                android:id="@+id/tvName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/ivImage"
-                android:maxLines="2"
-                android:textColor="#E1E1E1"
-                android:textSize="14sp"
-                tools:text="Mens Casual Premium Slim Fit T-Shirts" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                app:layout_constraintBottom_toBottomOf="@id/ivImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivImage"
+                app:layout_constraintTop_toTopOf="@id/ivImage">
 
-            <TextView
-                android:id="@+id/tvPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvName"
-                android:layout_marginTop="8dp"
-                android:layout_toEndOf="@id/ivImage"
-                android:maxLines="1"
-                android:textColor="#E1E1E1"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:text="$ 200" />
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="#E1E1E1"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Mens Casual Premium Slim Fit T-Shirts" />
 
-            <ImageView
-                android:id="@+id/ivStarRate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvPrice"
-                android:layout_marginTop="12dp"
-                android:layout_toEndOf="@id/ivImage"
-                android:src="@drawable/ic_star_rate"
-                app:tint="#FFB700" />
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tvName"
+                    android:layout_marginTop="8dp"
+                    android:maxLines="1"
+                    android:textColor="#E1E1E1"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvName"
+                    tools:text="$ 200" />
 
-            <TextView
-                android:id="@+id/tvRating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvPrice"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="12dp"
-                android:layout_toEndOf="@id/ivStarRate"
-                android:maxLines="1"
-                android:textColor="#E1E1E1"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                tools:text="4.5 (300 reviews)" />
+                <ImageView
+                    android:id="@+id/ivStarRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:src="@drawable/ic_star_rate"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvPrice"
+                    app:tint="#FFB700" />
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/tvRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="12dp"
+                    android:maxLines="1"
+                    android:textColor="#E1E1E1"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/ivStarRate"
+                    app:layout_constraintStart_toEndOf="@id/ivStarRate"
+                    app:layout_constraintTop_toBottomOf="@id/tvPrice"
+                    tools:text="4.5 (300 reviews)" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
